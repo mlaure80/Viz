@@ -8,6 +8,7 @@ function drawChart(sampledata) {
         var chosensamplearray = samples.filter(samplename => samplename.id == sampledata);
         var chosensample = chosensamplearray[0];
         var yticks = chosensample.otu_ids.slice(0,10).reverse().map(item => `OTU ${item}`);
+        var otu_labels = samples[0].otu_labels;
         
         
         console.log(samples);
@@ -27,11 +28,14 @@ function drawChart(sampledata) {
             type: 'bubble',
             x: chosensample.otu_ids,
             y: chosensample.sample_values,
+            text: otu_labels,
+            hovermode: "closest",
             mode: 'markers',
             marker: {
                 size: chosensample.sample_values,
                 color: chosensample.otu_ids,
-                colorscale: "Earth"
+                colorscale: "Earth",
+                //text: ample.otu_labels
               }
             
             }];
